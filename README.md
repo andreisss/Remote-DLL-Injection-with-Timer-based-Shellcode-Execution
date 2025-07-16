@@ -14,6 +14,8 @@ This approach introduces a stealthy execution vector that avoids classic API hoo
 
 ---
 
+![Recording 2025-07-16 1317152323](https://github.com/user-attachments/assets/fe7d0f6f-a1e0-4198-8e06-dec994e42bd6)
+
 ## 🔬 Research Contribution
 
 This project presents the **first publicly documented use of `CreateThreadpoolTimer` for shellcode execution in a process injection scenario**. Extensive searches across research portals, GitHub, and offensive security communities confirmed the uniqueness of this implementation for these WIN API for injection.
@@ -79,5 +81,3 @@ InitializeThreadpoolEnvironment()  // Configure threadpool callback environment
 CreateThreadpoolTimer()            // Create a timer object
 SetThreadpoolTimer()               // Schedule the timer for execution
 TimerCallback()                    // Callback function that executes shellcode
-
-![Recording 2025-07-16 1317152323](https://github.com/user-attachments/assets/fe7d0f6f-a1e0-4198-8e06-dec994e42bd6)
