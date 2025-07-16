@@ -16,7 +16,7 @@ This approach introduces a stealthy execution vector that avoids classic API hoo
 
 ## 🔬 Research Contribution
 
-This project presents the **first publicly documented use of `CreateThreadpoolTimer` for shellcode execution in a process injection scenario**. Extensive searches across research portals, GitHub, and offensive security communities confirmed the uniqueness of this implementation.
+This project presents the **first publicly documented use of `CreateThreadpoolTimer` for shellcode execution in a process injection scenario**. Extensive searches across research portals, GitHub, and offensive security communities confirmed the uniqueness of this implementation for these WIN API for injection.
 
 ---
 
