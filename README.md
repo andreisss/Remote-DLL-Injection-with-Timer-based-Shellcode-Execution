@@ -29,12 +29,6 @@ This project presents the **first publicly documented use of `CreateThreadpoolTi
 
 ---
 
-Want help generating sections for:
-- 🛠 Build Instructions  
-- 🚀 Usage & Testing  
-- 🔒 Mitigations or Detection Ideas  
-
-
 🛠️ Technical Implementation
 
 <img width="732" height="172" alt="image" src="https://github.com/user-attachments/assets/60df6f0d-b2e9-4d88-88c1-da88a3d1217a" />
