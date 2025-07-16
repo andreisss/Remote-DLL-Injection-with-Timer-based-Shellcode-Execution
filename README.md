@@ -15,43 +15,54 @@ Evasion Potential: Different telemetry signature than known injection methods
 API Combination: Unique pairing of CreateThreadpoolTimer with injection techniques
 
 🛠️ Technical Implementation
-Architecture
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│  DLL Injection  │───▶│  Timer Creation  │───▶│ Code Execution  │
-│   (Traditional) │    │     (Novel)      │    │  (via Callback) │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
+
+<img width="732" height="172" alt="image" src="https://github.com/user-attachments/assets/60df6f0d-b2e9-4d88-88c1-da88a3d1217a" />
+
+
+
 Execution Flow
 
 Injection Phase: Traditional DLL injection into target process
+
 Timer Setup: Thread pool timer created with configurable delay
+
 Callback Execution: Timer callback fires in target process context
+
 Code Execution: Shellcode executed through timer callback mechanism
 
 Core Components
 1. Main Injector (Injector.cpp)
 
 Process enumeration and targeting
+
 DLL injection using CreateRemoteThread + LoadLibraryW
+
 Error handling and status reporting
 
 2. Timer DLL (TimerDLL.cpp)
 
 Timer-based execution implementation
+
 TP_CALLBACK_ENVIRON configuration
+
 Shellcode execution via timer callback
 
-📋 API Sequence
-Traditional Injection APIs
-cppOpenProcess()           // Target process access
-VirtualAllocEx()        // Remote memory allocation  
-WriteProcessMemory()    // DLL path writing
-CreateRemoteThread()    // Remote thread creation
-LoadLibraryW()          // DLL loading
+## 📋 API Sequence
 
-Timer APIs
-cppInitializeThreadpoolEnvironment()  // Callback environment setup
-CreateThreadpoolTimer()            // Timer object creation
-SetThreadpoolTimer()               // Timer scheduling
-TimerCallback()                    // Execution vector
+### 🧪 Traditional Injection APIs
+```cpp
+OpenProcess()           // Access the target process
+VirtualAllocEx()        // Allocate memory in remote process  
+WriteProcessMemory()    // Write shellcode or DLL path
+CreateRemoteThread()    // Create a remote thread to execute payload
+LoadLibraryW()          // Load a DLL via thread execution
+
+
+⏱️ Thread Pool Timer-Based APIs
+
+InitializeThreadpoolEnvironment()  // Configure threadpool callback environment
+CreateThreadpoolTimer()            // Create a timer object
+SetThreadpoolTimer()               // Schedule the timer for execution
+TimerCallback()                    // Callback function that executes shellcode
 
 ![Recording 2025-07-16 1317152323](https://github.com/user-attachments/assets/fe7d0f6f-a1e0-4198-8e06-dec994e42bd6)
