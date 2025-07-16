@@ -1,51 +1,72 @@
-Thread Pool Timer Process Injection
+# 🧬 Thread Pool Timer Process Injection
 
-⚠️ Educational Research Only
-This repository contains security research for educational purposes and authorized activity. Use responsibly and in accordance with applicable laws and regulations.
+> ⚠️ **Educational Research Only**  
+> This repository contains security research for **educational purposes** and **authorized use only**.  
+> Use responsibly and in accordance with all applicable laws and regulations.
 
-Overview
-Thread Pool Timer Process Injection is a novel process injection technique that leverages Windows thread pool infrastructure for code execution. By combining traditional DLL injection with CreateThreadpoolTimer API calls, this method executes code through legitimate Windows mechanisms while potentially evading common detection patterns.
+---
 
-🔬 Research Contribution
-This technique represents the first documented use of CreateThreadpoolTimer for process injection purposes. Our comprehensive analysis revealed no existing public documentation of this specific API combination for code execution.
+## 📖 Overview
 
-Novel Execution Vector: Uses Windows thread pool timer callbacks
-Legitimate Infrastructure: Executes within Windows-managed thread pool workers
-Evasion Potential: Different telemetry signature than known injection methods
-API Combination: Unique pairing of CreateThreadpoolTimer with injection techniques
+**Thread Pool Timer Process Injection** is a novel technique that leverages the Windows thread pool infrastructure to execute shellcode. By combining traditional DLL injection with the `CreateThreadpoolTimer` API, this method enables in-memory code execution through legitimate system-managed threads—potentially bypassing many modern detection mechanisms.
+
+This approach introduces a stealthy execution vector that avoids classic API hooks such as `CreateRemoteThread`, `NtCreateThreadEx`, and APCs, making it highly attractive for red team operations and malware research.
+
+---
+
+## 🔬 Research Contribution
+
+This project presents the **first publicly documented use of `CreateThreadpoolTimer` for shellcode execution in a process injection scenario**. Extensive searches across research portals, GitHub, and offensive security communities confirmed the uniqueness of this implementation.
+
+---
+
+### 💡 Key Highlights
+
+- **Novel Execution Vector:** Utilizes Windows thread pool timer callbacks to run shellcode.
+- **Legitimate Infrastructure:** Executes code within native Windows-managed worker threads.
+- **Evasion Potential:** Generates telemetry that differs from well-known injection behaviors.
+- **API Innovation:** Unique pairing of `CreateThreadpoolTimer` with a custom injection strategy.
+
+---
+
+Want help generating sections for:
+- 🛠 Build Instructions  
+- 🚀 Usage & Testing  
+- 🔒 Mitigations or Detection Ideas  
+
 
 🛠️ Technical Implementation
 
 <img width="732" height="172" alt="image" src="https://github.com/user-attachments/assets/60df6f0d-b2e9-4d88-88c1-da88a3d1217a" />
 
+## 🔄 Execution Flow
 
+**Injection Phase:**  
+Traditional DLL injection into the target process using `CreateRemoteThread` and `LoadLibraryW`.
 
-Execution Flow
+**Timer Setup:**  
+Thread pool timer is created using `CreateThreadpoolTimer()` and armed via `SetThreadpoolTimer()`.
 
-Injection Phase: Traditional DLL injection into target process
+**Callback Execution:**  
+The configured timer fires inside the target process's context and triggers the callback function.
 
-Timer Setup: Thread pool timer created with configurable delay
+**Code Execution:**  
+Shellcode or malicious logic is executed directly via the timer callback mechanism.
 
-Callback Execution: Timer callback fires in target process context
+---
 
-Code Execution: Shellcode executed through timer callback mechanism
+## 🧩 Core Components
 
-Core Components
-1. Main Injector (Injector.cpp)
+### 🛠 Main Injector (`Injector.cpp`)
+- Process enumeration and targeting logic  
+- DLL injection using `CreateRemoteThread` and `LoadLibraryW`  
+- Error handling and execution status reporting  
 
-Process enumeration and targeting
+### ⏲ Timer DLL (`TimerDLL.cpp`)
+- Timer-based shellcode execution implementation  
+- `TP_CALLBACK_ENVIRON` structure setup for thread pool configuration  
+- Execution of shellcode via the timer callback  
 
-DLL injection using CreateRemoteThread + LoadLibraryW
-
-Error handling and status reporting
-
-2. Timer DLL (TimerDLL.cpp)
-
-Timer-based execution implementation
-
-TP_CALLBACK_ENVIRON configuration
-
-Shellcode execution via timer callback
 
 ## 📋 API Sequence
 
