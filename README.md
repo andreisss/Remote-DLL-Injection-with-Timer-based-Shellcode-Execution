@@ -1,12 +1,12 @@
-# 🧬 Thread Pool Timer Process Injection
+# Thread Pool Timer Process Injection
 
-> ⚠️ **Educational Research Only**  
+> ⚠ **Educational Research Only**  
 > This repository contains security research for **educational purposes** and **authorized use only**.  
 > Use responsibly and in accordance with all applicable laws and regulations.
 
 ---
 
-## 📖 Overview
+## Overview
 
 **Thread Pool Timer Process Injection** is a novel technique that leverages the Windows thread pool infrastructure to execute shellcode. By combining traditional DLL injection with the `CreateThreadpoolTimer` API, this method enables in-memory code execution through legitimate system-managed threads—potentially bypassing many modern detection mechanisms.
 
@@ -16,38 +16,13 @@ This approach introduces a stealthy execution vector that avoids classic API hoo
 
 ![Recording 2025-07-16 1317152323](https://github.com/user-attachments/assets/fe7d0f6f-a1e0-4198-8e06-dec994e42bd6)
 
-## 🔬 Research Contribution
-
-This project presents the **first publicly documented use of `CreateThreadpoolTimer` for shellcode execution in a process injection scenario**. Extensive searches across research portals, GitHub, and offensive security communities confirmed the uniqueness of this implementation for these WIN API for injection.
-
 ---
-
-### 💡 Key Highlights
-
-- **Novel Execution Vector:** Utilizes Windows thread pool timer callbacks to run shellcode.
-- **Legitimate Infrastructure:** Executes code within native Windows-managed worker threads.
-- **Evasion Potential:** Generates telemetry that differs from well-known injection behaviors.
-- **API Innovation:** Unique pairing of `CreateThreadpoolTimer` with a custom injection strategy.
 
 ---
 
 🛠️ Technical Implementation
 
 <img width="732" height="172" alt="image" src="https://github.com/user-attachments/assets/60df6f0d-b2e9-4d88-88c1-da88a3d1217a" />
-
-## 🔄 Execution Flow
-
-**Injection Phase:**  
-Traditional DLL injection into the target process using `CreateRemoteThread` and `LoadLibraryW`.
-
-**Timer Setup:**  
-Thread pool timer is created using `CreateThreadpoolTimer()` and armed via `SetThreadpoolTimer()`.
-
-**Callback Execution:**  
-The configured timer fires inside the target process's context and triggers the callback function.
-
-**Code Execution:**  
-Shellcode or malicious logic is executed directly via the timer callback mechanism.
 
 ---
 
