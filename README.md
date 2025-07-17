@@ -8,7 +8,7 @@
 
 ## Overview
 
-**Thread Pool Timer Process Injection** is a novel technique that leverages the Windows thread pool infrastructure to execute shellcode. By combining traditional DLL injection with the `CreateThreadpoolTimer` API, this method enables in-memory code execution through legitimate system-managed threads—potentially bypassing many modern detection mechanisms.
+**Thread Pool Timer Process Injection** is a technique that leverages the Windows thread pool infrastructure to execute shellcode. By combining traditional DLL injection with the `CreateThreadpoolTimer` API, this method enables in-memory code execution through legitimate system-managed threads—potentially bypassing many modern detection mechanisms.
 
 This approach introduces a stealthy execution vector that avoids classic API hooks such as `CreateRemoteThread`, `NtCreateThreadEx`, and APCs, making it highly attractive for red team operations and malware research.
 
