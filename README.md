@@ -43,6 +43,9 @@ This approach introduces a stealthy execution vector that avoids classic API hoo
 
 🔹 Thread Pool / Timer API
 InitializeThreadpoolEnvironment	Initializes a thread pool callback environment.
+
 CreateThreadpoolTimer	Creates a thread pool timer object with callback.
+
 SetThreadpoolTimer	Sets the timer to fire after a delay.
+
 CloseThreadpoolTimer	Cleans up the timer.                   // Callback function that executes shellcode
