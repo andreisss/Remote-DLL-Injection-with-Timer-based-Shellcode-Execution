@@ -39,18 +39,7 @@ This approach introduces a stealthy execution vector that avoids classic API hoo
 - Execution of shellcode via the timer callback  
 
 
-## 📋 API Sequence
-
-### 🧪 Traditional Injection APIs
-```cpp
-OpenProcess()           // Access the target process
-VirtualAllocEx()        // Allocate memory in remote process  
-WriteProcessMemory()    // Write shellcode or DLL path
-CreateRemoteThread()    // Create a remote thread to execute payload
-LoadLibraryW()          // Load a DLL via thread execution
-
-
-⏱️ Thread Pool Timer-Based APIs
+⏱️ Thread Pool Timer-Based APIs shellcode execution
 
 🔹 Thread Pool / Timer API
 InitializeThreadpoolEnvironment	Initializes a thread pool callback environment.
