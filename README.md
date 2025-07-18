@@ -28,12 +28,12 @@ This approach introduces a stealthy execution vector that avoids classic API hoo
 
 ## 🧩 Core Components
 
-### 🛠 Main Injector (`Injector.cpp`)
+### 🛠 Main Injector (`ConsoleApplication5.cpp`)
 - Process enumeration and targeting logic  
 - DLL injection using `CreateRemoteThread` and `LoadLibraryW`  
 - Error handling and execution status reporting  
 
-### ⏲ Timer DLL (`TimerDLL.cpp`)
+### ⏲ Timer DLL (`Dll1.cpp`)
 - Timer-based shellcode execution implementation  
 - `TP_CALLBACK_ENVIRON` structure setup for thread pool configuration  
 - Execution of shellcode via the timer callback  
@@ -52,7 +52,8 @@ LoadLibraryW()          // Load a DLL via thread execution
 
 ⏱️ Thread Pool Timer-Based APIs
 
-InitializeThreadpoolEnvironment()  // Configure threadpool callback environment
-CreateThreadpoolTimer()            // Create a timer object
-SetThreadpoolTimer()               // Schedule the timer for execution
-TimerCallback()                    // Callback function that executes shellcode
+🔹 Thread Pool / Timer API
+InitializeThreadpoolEnvironment	Initializes a thread pool callback environment.
+CreateThreadpoolTimer	Creates a thread pool timer object with callback.
+SetThreadpoolTimer	Sets the timer to fire after a delay.
+CloseThreadpoolTimer	Cleans up the timer.                   // Callback function that executes shellcode
