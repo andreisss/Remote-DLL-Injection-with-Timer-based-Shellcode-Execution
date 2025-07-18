@@ -1,4 +1,5 @@
-# Thread Pool Timer Process Injection
+# Remote DLL Injection with Timer-based Shellcode Execution
+ 
 
 > ⚠ **Educational Research Only**  
 > This repository contains security research for **educational purposes** and **authorized use only**.  
